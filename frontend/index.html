@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Aprendices</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Centro de Biotecnología Agropecuaria</h1>
+
+        <div class="tarjeta">
+
+            <h2>Registro de Aprendices</h2>
+
+            <form id="formulario">
+
+                <input
+                    type="text"
+                    id="nombre_completo"
+                    placeholder="Nombre completo"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="numero_documento"
+                    placeholder="Número de documento"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="ficha"
+                    placeholder="Número de ficha"
+                    required
+                >
+
+                <button type="submit">
+                    Registrar aprendiz
+                </button>
+
+            </form>
+
+        </div>
+
+        <h2>Aprendices registrados</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre completo</th>
+                    <th>Documento</th>
+                    <th>Ficha</th>
+                    <th>Fecha de registro</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabla-aprendices"></tbody>
+
+        </table>
+
+    </div>
+
+    <script>
+        const API = "";
+
+        async function cargarAprendices() {
+            const respuesta = await fetch(`${API}/aprendices`);
+            const aprendices = await respuesta.json();
+
+            const tabla = document.getElementById("tabla-aprendices");
+            tabla.innerHTML = "";
+
+            aprendices.forEach(aprendiz => {
+                tabla.innerHTML += `
+                    <tr>
+                        <td>${aprendiz.id}</td>
+                        <td>${aprendiz.nombre_completo}</td>
+                        <td>${aprendiz.numero_documento}</td>
+                        <td>${aprendiz.ficha}</td>
+                        <td>${aprendiz.creado_en}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        document.getElementById("formulario").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            await fetch(`${API}/registrar`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nombre_completo: document.getElementById("nombre_completo").value,
+                    numero_documento: document.getElementById("numero_documento").value,
+                    ficha: document.getElementById("ficha").value
+                })
+            });
+
+            this.reset();
+            cargarAprendices();
+        });
+
+        cargarAprendices();
+    </script>
+
+</body>
+</html>
