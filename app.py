@@ -17,7 +17,7 @@ def inicio():
         <div class="contenedor">
             <h1>Centro de Biotecnología Agropecuaria</h1>
 
-            <p>Me está llamando desde 172.17.0.1</p>
+            <p>API actualizada automaticamente mediante CI/CD</p>
 
             <p>Angie Maritza Carrillo Fuquene</p>
         </div>
@@ -27,3 +27,4 @@ def inicio():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
