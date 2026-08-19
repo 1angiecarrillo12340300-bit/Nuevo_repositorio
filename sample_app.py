@@ -104,3 +104,9 @@ if __name__ == "__main__":
         port=5050,
         debug=True
     )
+
+@app.route("/bienvenida")
+def bienvenida():
+    return jsonify({
+        "mensaje": "Bienvenidos - actualización automática mediante CI/CD"
+    })
