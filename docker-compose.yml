@@ -41,8 +41,18 @@ services:
       db:
         condition: service_healthy
 
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
+    ports:
+      - "3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    restart: unless-stopped
+
 volumes:
   mysql_data:
+  uptime-kuma-data:
 
 networks:
   red-cba:
