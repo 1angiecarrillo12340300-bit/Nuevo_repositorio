@@ -1,4 +1,4 @@
-
+ï»¿
 from flask import Flask, request, jsonify
 import mysql.connector
 import os
@@ -108,5 +108,6 @@ if __name__ == "__main__":
 @app.route("/bienvenida")
 def bienvenida():
     return jsonify({
-        "mensaje": "Bienvenidos - actualización automática mediante CI/CD"
+        "mensaje": "Bienvenidos - actualizacion automatica mediante CI/CD"
     })
+
