@@ -51,7 +51,7 @@ jobs:
           load: true
           no-cache: true
           provenance: false
-          sbom: true
+          sbom: false
           tags: angie11/cristian-api:v2
 
       - name: Verificar dependencias de la imagen API
@@ -78,7 +78,7 @@ jobs:
           load: true
           no-cache: true
           provenance: false
-          sbom: true
+          sbom: false
           tags: angie11/cristian-frontend:v2
 
       - name: Escanear Frontend con Trivy
@@ -110,6 +110,7 @@ jobs:
             docker compose up -d
 
 # Workflow actualizado
+
 
 
 
