@@ -50,6 +50,8 @@ jobs:
           push: false
           load: true
           no-cache: true
+          provenance: false
+          sbom: false
           tags: angie11/cristian-api:v2
 
       - name: Escanear API con Trivy
@@ -69,6 +71,8 @@ jobs:
           push: false
           load: true
           no-cache: true
+          provenance: false
+          sbom: false
           tags: angie11/cristian-frontend:v2
 
       - name: Escanear Frontend con Trivy
