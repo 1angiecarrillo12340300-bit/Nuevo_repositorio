@@ -100,9 +100,9 @@ if __name__ == "__main__":
     crear_tabla()
 
     app.run(
-        host="0.0.0.0",
+        host="0.0.0.0",  # nosec B104
         port=5050,
-        debug=True
+        debug=False
     )
 
 @app.route("/bienvenida")
@@ -110,4 +110,6 @@ def bienvenida():
     return jsonify({
         "mensaje": "Bienvenidos - actualizacion automatica mediante CI/CD"
     })
+
+
 

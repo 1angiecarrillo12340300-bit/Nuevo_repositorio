@@ -1,4 +1,4 @@
-from flask import Flask
+﻿from flask import Flask
 
 app = Flask(__name__)
 
@@ -10,12 +10,12 @@ def inicio():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Centro de Biotecnología Agropecuaria</title>
+        <title>Centro de BiotecnologÃ­a Agropecuaria</title>
         <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
         <div class="contenedor">
-            <h1>Centro de Biotecnología Agropecuaria</h1>
+            <h1>Centro de BiotecnologÃ­a Agropecuaria</h1>
 
             <p>API actualizada automaticamente mediante CI/CD</p>
 
@@ -26,5 +26,6 @@ def inicio():
     """
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
+
 
