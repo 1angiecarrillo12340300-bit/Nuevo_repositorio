@@ -102,14 +102,14 @@ if __name__ == "__main__":
     app.run(
         host="0.0.0.0",  # nosec B104
         port=5050,
-        debug=True
+        debug=False
     )
 
 @app.route("/bienvenida")
 def bienvenida():
     return jsonify({
         "mensaje": "Bienvenidos - actualizacion automatica mediante CI/CD"
-    }),500
+    })
 
 
 
