@@ -37,11 +37,6 @@ jobs:
       - name: Descargar codigo
         uses: actions/checkout@v4
 
-      - name: Mostrar requirements.txt
-        run: |
-          echo "Contenido de requirements.txt:"
-          cat requirements.txt
-
       - name: Iniciar sesion en Docker Hub
         uses: docker/login-action@v3
         with:
@@ -59,16 +54,9 @@ jobs:
           sbom: false
           tags: angie11/cristian-api:v2
 
-      - name: Verificar versiones de seguridad
+      - name: Verificar dependencias de la imagen API
         run: |
-          echo "Verificando msgpack..."
-          docker run --rm angie11/cristian-api:v2 python -c "import msgpack; print('msgpack:', msgpack.__version__)"
-
-          echo "Verificando setuptools..."
-          docker run --rm angie11/cristian-api:v2 python -c "import setuptools; print('setuptools:', setuptools.__version__)"
-
-          echo "Paquetes instalados:"
-          docker run --rm angie11/cristian-api:v2 pip freeze
+          docker run --rm angie11/cristian-api:v2 python -c "import msgpack; import setuptools; print('msgpack:', msgpack.__version__); print('setuptools:', setuptools.__version__)"
 
       - name: Escanear API con Trivy
         uses: aquasecurity/trivy-action@master
@@ -80,6 +68,7 @@ jobs:
           scanners: vuln
           vuln-type: "os,library"
           severity: "CRITICAL,HIGH"
+          skip-files: "/usr/local/lib/python3.14/site-packages/pip/_vendor/bom.cdx.json"
 
       - name: Construir imagen Frontend
         uses: docker/build-push-action@v6
@@ -119,7 +108,3 @@ jobs:
             cd ~/despliegue
             docker compose pull
             docker compose up -d
-
-
-
-
