@@ -2,7 +2,9 @@
 
 on:
   push:
-    branches: ["main, feature/vulnerabilidades"]
+    branches:
+      - main
+      - feature/vulnerabilidades
 
 jobs:
   test-and-security:
